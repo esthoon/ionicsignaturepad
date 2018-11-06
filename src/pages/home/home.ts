@@ -1,14 +1,25 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, IonicPage, ModalController, NavParams } from 'ionic-angular';
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  signatureImage: string;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController) {
+    this.signatureImage = this.navParams.get('signature')
+  }
+
+
+  openSignatureModal() {
+    setTimeout(() => {
+      let modal = this.modalCtrl.create('SignaturePage');
+      modal.present();
+    }, 200)
   }
 
 }
